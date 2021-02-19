@@ -5,8 +5,11 @@ def gamma_function(a):
         return gamma_function(a - 1) * a
 
 def main():
-    n = input("Enter your number:\n")
-    print("Your result is", gamma_function(int(n)))
+    try:
+        n = int(input("Enter your number: "))
+        print("Your result is", gamma_function(int(n)))
+    except:
+        print("Error!")
 
 if __name__ == "__main__":
     main()
