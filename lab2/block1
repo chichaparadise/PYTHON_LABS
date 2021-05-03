@@ -28,7 +28,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 3,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -41,10 +41,6 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": 3,
-   "metadata": {},
-   "outputs": [],
    "source": [
     "def get_closure_globs(code_obj, globs):\n",
     "    if isinstance(code_obj, types.CodeType):\n",
@@ -55,15 +51,8 @@
     "            if name in dir(mod):\n",
     "                    globs[name] = getattr(mod, name)\n",
     "            elif name in dir(builtins):\n",
-    "                globs[name] = getattr(builtins, name)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 4,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "                globs[name] = getattr(builtins, name)\n",
+    "\n",
     "def get_codeobject_attrs(obj):\n",
     "    if isinstance(obj, types.CodeType):\n",
     "        obj_dict = {}\n",
@@ -71,15 +60,8 @@
     "            if key.startswith('co_'):\n",
     "                value = obj.__getattribute__(key)\n",
     "                obj_dict[key] = value\n",
-    "        return obj_dict"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 5,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "        return obj_dict\n",
+    "\n",
     "def unpack_codeobject(obj_dict):\n",
     "    code_obj = types.CodeType(obj_dict['co_argcount'],\n",
     "                      obj_dict['co_posonlyargcount'],\n",
@@ -98,15 +80,8 @@
     "                      obj_dict['co_freevars'],\n",
     "                      obj_dict['co_cellvars']\n",
     "                      )\n",
-    "    return code_obj"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 6,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "    return code_obj\n",
+    "\n",
     "def pack_function(obj):\n",
     "    obj_dict = {}\n",
     "    attrs = {}\n",
@@ -118,15 +93,8 @@
     "    get_closure_globs(obj.__code__, global_ns)\n",
     "    obj_dict['__globals__'] = global_ns\n",
     "    obj_dict['attributes'] = attrs\n",
-    "    return obj_dict"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 7,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "    return obj_dict\n",
+    "\n",
     "def unpack_function(obj_dict):\n",
     "    attrs = obj_dict['attributes']\n",
     "    obj = types.FunctionType(code=attrs['__code__'],\n",
@@ -135,58 +103,20 @@
     "                             argdefs=attrs['__defaults__'],\n",
     "                             closure=attrs['__closure__'])\n",
     "    # obj.__module__ = obj_dict['module']\n",
-    "    return obj"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 8,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "x = lambda n : n ** 3\n",
-    "zhop = 4\n",
-    "kisa = True\n",
-    "def hi():\n",
-    "    a = 2\n",
-    "    global kisa\n",
-    "    def clos():\n",
-    "        global x\n",
-    "        global zhop\n",
-    "        nonlocal a\n",
-    "        f = x(zhop)\n",
-    "        return f*a\n",
-    "    if kisa:\n",
-    "        return clos"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 9,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "    return obj\n",
+    "\n",
     "def pack_builtinsfunc(obj):\n",
     "    obj_dict = {}\n",
     "    obj_dict['type'] = 'builtinfunction'\n",
     "    obj_dict['module'] = obj.__module__\n",
     "    obj_dict['attributes'] = {'__name__' : obj.__name__}\n",
     "    return obj_dict\n",
-    "\n",
+    "    \n",
     "def unpack_builtinsfunc(obj_dict):\n",
     "    module = importlib.import_module(obj_dict['module'])\n",
     "    obj = getattr(module, obj_dict['attributes']['__name__'])\n",
-    "    return obj"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 10,
-   "metadata": {
-    "tags": []
-   },
-   "outputs": [],
-   "source": [
+    "    return obj\n",
+    "\n",
     "def pack(obj):\n",
     "    obj_dict = {}\n",
     "    if type(obj) in (int, float, str, bool):\n",
@@ -252,15 +182,13 @@
     "    if isinstance(obj, types.BuiltinFunctionType):\n",
     "        obj_dict['type'] = 'builtinfunction'\n",
     "        obj_dict['data'] = pack(pack_builtinsfunc(obj))\n",
-    "        return obj_dict"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 11,
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "        return obj_dict\n",
+    "\n",
+    "    if isinstance(obj, types.CellType):\n",
+    "        obj_dict['type'] = 'celltype'\n",
+    "        obj_dict['data'] = pack(obj.cell_contents)\n",
+    "        return obj_dict\n",
+    "\n",
     "def unpack(obj_dict):\n",
     "    obj = object\n",
     "    try:\n",
@@ -311,7 +239,86 @@
     "\n",
     "    if t == 'builtinfunction':\n",
     "        obj = unpack_builtinsfunc(unpack(obj_dict['data']))\n",
+    "        return obj\n",
+    "\n",
+    "    if t == 'celltype':\n",
+    "        obj = types.CellType()\n",
+    "        obj.cell_contents = unpack(obj_dict['data'])\n",
     "        return obj"
+   ],
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": 1,
+   "outputs": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "in metaclass __new__ method\nin metaclass __init__ method\n"
+     ]
+    }
+   ],
+   "source": [
+    "class MyMeta(type):\n",
+    "    def __new__(cls, classname, supers, dict):\n",
+    "        print(\"in metaclass __new__ method\")\n",
+    "        return type.__new__(cls, classname, supers, dict)\n",
+    "    def __init__(cls, classname, supers, dict):\n",
+    "        print(\"in metaclass __init__ method\")\n",
+    "\n",
+    "def dec(func):\n",
+    "    def wrap(*args, **kwargs):\n",
+    "        print(\"in\", func.__name__)\n",
+    "        return func(*args, **kwargs)\n",
+    "    return wrap\n",
+    "\n",
+    "class Example(metaclass=MyMeta):\n",
+    "    data = 1\n",
+    "    self_dict = {}\n",
+    "    def __init__(self):\n",
+    "        self.b = 3\n",
+    "    def f(self, name):\n",
+    "        print(\"fuck off\", name)\n",
+    "    @staticmethod\n",
+    "    def hi(self): pass\n",
+    "    @classmethod\n",
+    "    def clf(self):pass\n",
+    "    def decf(self):pass\n",
+    "    decf = dec(decf)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def unpack_type(obj):\n",
+    "    obj_dict = {}\n",
+    "types."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "{'__module__': '__main__', 'data': 1, 'self_dict': {}, '__init__': <function Example.__init__ at 0x7f3b9c21d3a0>, 'f': <function Example.f at 0x7f3b9c21d430>, 'hi': <staticmethod object at 0x7f3b9c239040>, 'clf': <classmethod object at 0x7f3b9c2397f0>, 'decf': <function dec.<locals>.wrap at 0x7f3b9c21d670>, '__dict__': <attribute '__dict__' of 'Example' objects>, '__weakref__': <attribute '__weakref__' of 'Example' objects>, '__doc__': None}\n"
+     ]
+    }
+   ],
+   "source": [
+    "print({key : value for key, value in Example.__dict__.items() if not inspect.isroutine(key)})"
    ]
   },
   {
