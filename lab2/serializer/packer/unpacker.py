@@ -8,6 +8,13 @@ class Unpacker():
         obj = type(obj_dict['__name__'], obj_dict['__bases__'], obj_dict['__dict__'])
         return obj
 
+    def unpack_instance(self, obj_dict):
+        klass = obj_dict['class']
+        obj = klass()
+        for key, attr in obj_dict['dict'].items():
+            setattr(obj, key, attr)
+        return obj
+
     def unpack_codeobject(self, obj_dict):
         code_obj = types.CodeType(obj_dict['co_argcount'],
                           obj_dict['co_posonlyargcount'],
@@ -63,43 +70,47 @@ class Unpacker():
         
         if t in ('dict', 'list', 'tuple', 'set', 'frozenset'):
             if t == 'dict':
-                tmp = {key : unpack(val) for key, val in obj_dict['data'].items()}
+                tmp = {key : self.unpack(val) for key, val in obj_dict['data'].items()}
                 if 'type' in tmp.keys():
                     if 'data' in tmp.keys():
-                        return unpack(tmp['data'])
+                        return self.unpack(tmp['data'])
                 return tmp
             if t == 'list':
-                return [unpack(el) for el in obj_dict['data']]
+                return [self.unpack(el) for el in obj_dict['data']]
             if t == 'tuple':
-                o = [unpack(el) for el in obj_dict['data']]
+                o = [self.unpack(el) for el in obj_dict['data']]
                 return tuple(o)
             if t == 'set':
-                o = [unpack(el) for el in obj_dict['data']]
+                o = [self.unpack(el) for el in obj_dict['data']]
                 return set(o)
             if t == 'frozenset':
-                o = [unpack(el) for el in obj_dict['data']]
+                o = [self.unpack(el) for el in obj_dict['data']]
                 return frozenset(o)
 
         if t == 'bytes':
             return bytes(obj_dict['data'])
 
         if t == 'codeobject':
-            obj = unpack_codeobject(unpack(obj_dict['data']))
+            obj = self.unpack_codeobject(self.unpack(obj_dict['data']))
             return obj
     
         if t == 'class':
-            obj = unpack_class(unpack(obj_dict['data']))
+            obj = self.unpack_class(self.unpack(obj_dict['data']))
             return obj
 
         if t == 'function':
-            obj = unpack_function(unpack(obj_dict['data']))
+            obj = self.unpack_function(self.unpack(obj_dict['data']))
             return obj
 
         if t == 'builtinfunction':
-            obj = unpack_builtinsfunc(unpack(obj_dict['data']))
+            obj = self.unpack_builtinsfunc(self.unpack(obj_dict['data']))
             return obj
 
         if t == 'celltype':
                 obj = types.CellType()
-                obj.cell_contents = unpack(obj_dict['data'])
+                obj.cell_contents = self.unpack(obj_dict['data'])
                 return obj
+
+        if t == 'instance':
+            obj = self.unpack_instance(self.unpack(obj_dict['data']))
+            return obj
