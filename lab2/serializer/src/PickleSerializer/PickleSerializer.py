@@ -10,7 +10,7 @@ class PickleSerializer:
 
     def dump(self, obj: object):
         obj_dict = self.packer.pack(obj)
-        with open(self.path, "w") as file:
+        with open(self.path, "wb") as file:
             pickle.dump(obj_dict, file)
 
     def dumps(self, obj: object):
@@ -20,7 +20,7 @@ class PickleSerializer:
 
     def load(self):
         obj_dict = {}
-        with open(self.path, "r") as file:
+        with open(self.path, "rb") as file:
             obj_dict = pickle.load(file)
         obj = self.unpacker.unpack(obj_dict)  # may be make both packer and unpacker callable
         return obj
