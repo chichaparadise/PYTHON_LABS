@@ -1,3 +1,4 @@
+import pickle
 def gamma_function(a):
     if a == 1:
         return a

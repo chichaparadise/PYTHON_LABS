@@ -11,7 +11,7 @@ setup(
     description='Serializer/Deserializer',
     author='BigDickClub',
     license='Apache',
-    python_requires='>=3.8.5',
+    python_requires='>=3.8',
 )
 
 import os
@@ -23,7 +23,7 @@ os.system('rm -rf ~/ser')
 os.system('mkdir ~/ser')
 os.system('cp -a . ~/ser')
 
-os.system('chmod +x ~/ser/redump.py')
+os.system('chmod +x ~/ser/src/redump.py')
 with open(home + '/.bashrc', 'a') as file:
-    file.write("alias redump='" + "~/ser/redump.py'" + '\n')
+    file.write("alias redump='" + "~/ser/src/redump.py'" + '\n')
 
