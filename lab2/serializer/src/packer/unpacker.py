@@ -106,7 +106,7 @@ class Unpacker:
             return obj
 
         if t == "builtinfunction":
-            obj = self.unpack_builtinsfunc(self.unpack(obj_dict["data"]))
+            obj = self.unpack_builtinfunction(self.unpack(obj_dict["data"]))
             return obj
 
         if t == "celltype":

@@ -9,10 +9,10 @@ class SerializerFactory:
 
     def create_serializer(self, extension="json"):
         if extension.lower() == "json":
-            return js.JsonSerializer(path)
+            return js.JsonSerializer(self.path)
         elif extension.lower() == "pickle":
-            return ps.PickleSerializer(path)
+            return ps.PickleSerializer(self.path)
         elif extension.lower() == "toml":
-            return ts.TomlSerializer(path)
+            return ts.TomlSerializer(self.path)
         elif extension.lower() == "yaml":
-            return ys.YamlSerializer(path)
+            return ys.YamlSerializer(self.path)

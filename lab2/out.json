@@ -1,0 +1,155 @@
+{
+    "type": "function",
+    "data": {
+        "type": "dict",
+        "data": {
+            "__globals__": {
+                "type": "dict",
+                "data": {
+                    "print": {
+                        "type": "builtinfunction",
+                        "data": {
+                            "type": "dict",
+                            "data": {
+                                "type": {
+                                    "type": "str",
+                                    "data": "builtinfunction"
+                                },
+                                "module": {
+                                    "type": "str",
+                                    "data": "builtins"
+                                },
+                                "attributes": {
+                                    "type": "dict",
+                                    "data": {
+                                        "__name__": {
+                                            "type": "str",
+                                            "data": "print"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "attributes": {
+                "type": "dict",
+                "data": {
+                    "__name__": {
+                        "type": "str",
+                        "data": "fuck_off"
+                    },
+                    "__defaults__": null,
+                    "__closure__": null,
+                    "__code__": {
+                        "type": "codeobject",
+                        "data": {
+                            "type": "dict",
+                            "data": {
+                                "co_argcount": {
+                                    "type": "int",
+                                    "data": 1
+                                },
+                                "co_cellvars": {
+                                    "type": "tuple",
+                                    "data": []
+                                },
+                                "co_code": {
+                                    "type": "bytes",
+                                    "data": [
+                                        116,
+                                        0,
+                                        100,
+                                        1,
+                                        124,
+                                        0,
+                                        131,
+                                        2,
+                                        1,
+                                        0,
+                                        100,
+                                        0,
+                                        83,
+                                        0
+                                    ]
+                                },
+                                "co_consts": {
+                                    "type": "tuple",
+                                    "data": [
+                                        null,
+                                        {
+                                            "type": "str",
+                                            "data": "fuck off"
+                                        }
+                                    ]
+                                },
+                                "co_filename": {
+                                    "type": "str",
+                                    "data": "/home/linuxoid/isp/lab2/serializer/main.py"
+                                },
+                                "co_firstlineno": {
+                                    "type": "int",
+                                    "data": 5
+                                },
+                                "co_flags": {
+                                    "type": "int",
+                                    "data": 67
+                                },
+                                "co_freevars": {
+                                    "type": "tuple",
+                                    "data": []
+                                },
+                                "co_kwonlyargcount": {
+                                    "type": "int",
+                                    "data": 0
+                                },
+                                "co_lnotab": {
+                                    "type": "bytes",
+                                    "data": [
+                                        0,
+                                        1
+                                    ]
+                                },
+                                "co_name": {
+                                    "type": "str",
+                                    "data": "fuck_off"
+                                },
+                                "co_names": {
+                                    "type": "tuple",
+                                    "data": [
+                                        {
+                                            "type": "str",
+                                            "data": "print"
+                                        }
+                                    ]
+                                },
+                                "co_nlocals": {
+                                    "type": "int",
+                                    "data": 1
+                                },
+                                "co_posonlyargcount": {
+                                    "type": "int",
+                                    "data": 0
+                                },
+                                "co_stacksize": {
+                                    "type": "int",
+                                    "data": 3
+                                },
+                                "co_varnames": {
+                                    "type": "tuple",
+                                    "data": [
+                                        {
+                                            "type": "str",
+                                            "data": "name"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

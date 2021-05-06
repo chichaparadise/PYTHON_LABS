@@ -1,0 +1,108 @@
+data:
+  data:
+    __globals__:
+      data:
+        print:
+          data:
+            data:
+              attributes:
+                data:
+                  __name__:
+                    data: print
+                    type: str
+                type: dict
+              module:
+                data: builtins
+                type: str
+              type:
+                data: builtinfunction
+                type: str
+            type: dict
+          type: builtinfunction
+      type: dict
+    attributes:
+      data:
+        __closure__: null
+        __code__:
+          data:
+            data:
+              co_argcount:
+                data: 1
+                type: int
+              co_cellvars:
+                data: []
+                type: tuple
+              co_code:
+                data:
+                - 116
+                - 0
+                - 100
+                - 1
+                - 124
+                - 0
+                - 131
+                - 2
+                - 1
+                - 0
+                - 100
+                - 0
+                - 83
+                - 0
+                type: bytes
+              co_consts:
+                data:
+                - null
+                - data: fuck off
+                  type: str
+                type: tuple
+              co_filename:
+                data: /home/linuxoid/isp/lab2/serializer/main.py
+                type: str
+              co_firstlineno:
+                data: 5
+                type: int
+              co_flags:
+                data: 67
+                type: int
+              co_freevars:
+                data: []
+                type: tuple
+              co_kwonlyargcount:
+                data: 0
+                type: int
+              co_lnotab:
+                data:
+                - 0
+                - 1
+                type: bytes
+              co_name:
+                data: fuck_off
+                type: str
+              co_names:
+                data:
+                - data: print
+                  type: str
+                type: tuple
+              co_nlocals:
+                data: 1
+                type: int
+              co_posonlyargcount:
+                data: 0
+                type: int
+              co_stacksize:
+                data: 3
+                type: int
+              co_varnames:
+                data:
+                - data: name
+                  type: str
+                type: tuple
+            type: dict
+          type: codeobject
+        __defaults__: null
+        __name__:
+          data: fuck_off
+          type: str
+      type: dict
+  type: dict
+type: function
