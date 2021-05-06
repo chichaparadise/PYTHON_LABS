@@ -1,7 +1,8 @@
-import sys
-from src.Factory import SerializerFactory as sf
+from src import Serializer as sr
 
+a = sr.Serializer('out.json', 'json')
 
-a = sf.SerializerFactory('')
-
-print(sys.path)
+# b = a.load()
+c = sr.Serializer('out.yaml', 'yaml')
+f = c.load()
+f('nastya')
