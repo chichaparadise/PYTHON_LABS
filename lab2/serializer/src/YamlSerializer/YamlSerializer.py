@@ -21,7 +21,7 @@ class YamlSerializer:
     def load(self):
         obj_dict = {}
         with open(self.path, "r") as file:
-            obj_dict = yaml.load(file)
+            obj_dict = yaml.safe_load(file)
         obj = self.unpacker.unpack(obj_dict)  # may be make both packer and unpacker callable
         return obj
 
