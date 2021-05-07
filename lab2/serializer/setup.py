@@ -6,7 +6,7 @@ setup(
     name='Serializer',
     version='1.0.0',
     description='LR2',
-    packages=['src'],
+    packages=['src', 'src/Factory', 'src/JsonSerializer', 'src/TomlSerializer', 'src/YamlSerializer', 'src/PickleSerializer', 'src/packer'],
     author='BigDickClub',
     entry_points={
         'console_scripts': [

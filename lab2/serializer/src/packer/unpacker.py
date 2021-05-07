@@ -93,6 +93,9 @@ class Unpacker:
         if t == "bytes":
             return bytes(obj_dict["data"])
 
+        if t == "bytearray":
+            return bytearray(obj_dict["data"])
+
         if t == "codeobject":
             obj = self.unpack_codeobject(self.unpack(obj_dict["data"]))
             return obj

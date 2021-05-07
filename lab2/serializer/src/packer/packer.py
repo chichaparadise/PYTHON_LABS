@@ -26,8 +26,10 @@ class Packer:
         if inspect.ismodule(obj):
             return False
         else:
+            if not hasattr(obj, '__module__'): return
+            mod = importlib.import_module(obj.__module__)
             if obj.__class__.__name__ in dict(
-                inspect.getmembers(self.mod, inspect.isclass)
+                inspect.getmembers(mod, inspect.isclass)
             ):
                 return True
             else:
@@ -39,14 +41,14 @@ class Packer:
         obj_dict["dict"] = obj.__dict__
         return obj_dict
 
-    def get_closure_globs(self, code_obj, globs):
-        if isinstance(code_obj, types.CodeType):
+    def get_closure_globs(self, obj, globs):
+        if hasattr(obj, '__code__'):
+            code_obj = obj.__code__
             for var in code_obj.co_consts:
                 self.get_closure_globs(var, globs)
-                mod = importlib.import_module(__name__)
             for name in code_obj.co_names:
-                if name in dir(mod):
-                    globs[name] = getattr(mod, name)
+                if name in obj.__globals__.keys() and name != obj.__name__:
+                    globs[name] = obj.__globals__[name]
                 elif name in dir(builtins):
                     globs[name] = getattr(builtins, name)
 
@@ -76,7 +78,7 @@ class Packer:
         attrs["__closure__"] = obj.__closure__
         attrs["__code__"] = obj.__code__
         global_ns = {}
-        self.get_closure_globs(obj.__code__, global_ns)
+        self.get_closure_globs(obj, global_ns)
         obj_dict["__globals__"] = global_ns
         obj_dict["attributes"] = attrs
         return obj_dict
@@ -126,7 +128,11 @@ class Packer:
                 obj_dict["type"] = "set"
                 obj_dict["data"] = [self.pack(el) for el in obj]
                 return obj_dict
-            if isinstance(obj, frozenset()):
+            if isinstance(obj, set):
+                obj_dict["type"] = "set"
+                obj_dict["data"] = [self.pack(el) for el in obj]
+                return obj_dict
+            if isinstance(obj, frozenset):
                 obj_dict["type"] = "frozenset"
                 obj_dict["data"] = [self.pack(el) for el in obj]
                 return obj_dict

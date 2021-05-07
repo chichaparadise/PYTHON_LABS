@@ -19,6 +19,7 @@ def main():
         serializer.path = argv.dest
         serializer.extension = argv.ext.lower()
         serializer.dump(obj)
+        # print(f"Succefully redumped from .{src_ext} to .{argv.ext.lower()}")
 
 if __name__ == "__main__":
     main()
