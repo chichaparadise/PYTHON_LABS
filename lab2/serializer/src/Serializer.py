@@ -2,7 +2,7 @@ from src.Factory import SerializerFactory as sf
 
 class Serializer():
 
-    def __init__(self, path, extension='json'):
+    def __init__(self, path="", extension='json'):
         self._path = path
         self._extension = extension
         self.factory = sf.SerializerFactory(self._path)
