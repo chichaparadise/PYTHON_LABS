@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='Serializer',
-    version='Rubicon X',
+    version='1.0.0',
     description='LR2',
     packages=['src'],
     author='BigDickClub',

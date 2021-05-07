@@ -1,4 +1,5 @@
 from src.packer import packer, unpacker
+from io import StringIO
 import yaml
 
 
@@ -15,7 +16,7 @@ class YamlSerializer:
 
     def dumps(self, obj: object):
         obj_dict = self.packer.pack(obj)
-        result_string = yaml.dumps(obj_dict)
+        result_string = yaml.dump(obj_dict)
         return result_string
 
     def load(self):
@@ -26,6 +27,7 @@ class YamlSerializer:
         return obj
 
     def loads(self, obj_str: str):
-        obj_dict = yaml.loads(obj_str)
+        str_stream = StringIO(obj_str)
+        obj_dict = yaml.safe_load(str_stream)
         obj = self.unpacker.unpack(obj_dict)
         return obj
