@@ -1,9 +1,3 @@
-from collections import namedtuple
-from src import Serializer as ser
-from src.packer import packer, unpacker
-p = packer.Packer()
-u = unpacker.Unpacker()
-test = ser.Serializer()
 """
 primitives
 """
@@ -65,8 +59,6 @@ function using globals variable
 def say_hello():
     global name
     return 'Hello, ' + name
-
-# print(test.loads(test.dumps(say_hello))())
 
 exp_say_hello = 'Hello, Chizh'
 
