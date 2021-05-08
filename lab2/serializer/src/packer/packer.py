@@ -9,13 +9,6 @@ class Packer:
     def __init__(self):
         self.mod = importlib.import_module(__name__)
 
-    def pack_instance(self, obj):
-        obj_dict = {}
-        print(obj)
-        obj_dict["class"] = obj.__class__
-        obj_dict["dict"] = obj.__dict__
-        return obj_dict
-
     def is_instance(self, obj):
         if not hasattr(obj, "__dict__"):
             return False
