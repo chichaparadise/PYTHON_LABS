@@ -1,5 +1,5 @@
 from src.packer import packer, unpacker
-import json
+from src.JsonSerializer import JsonParser as json
 
 class JsonSerializer:
     def __init__(self, path: str):
