@@ -1,6 +1,4 @@
-import types
-
-SPACES = 3 * " "
+import json
 
 class JsonParser():
     def dumps(self, obj:object):
@@ -11,11 +9,11 @@ class JsonParser():
         fp.write(tokens)
 
     def loads(self, string:str):
-        return self.decode(string)
+        return self.decode(string)[0]
 
     def load(self, fp=""):
         buffer = fp.read()
-        return self.decode(buffer)
+        return self.decode(buffer)[0]
 
     def encode(self, obj:object):
         tokens = []
@@ -62,55 +60,215 @@ class JsonParser():
         index = 0
         while index < len(string):
             if string[index] == '{':
+                # string = string[index + 1 : string.rfind('}')] # go threw string until mett }
+                # string = string[index + 1 : ]
+                index += 1
                 obj = {}
-                key = self.decode(string[index + 1 : string.find(':')])
-                index = string.find(':') + 1
-                end_index = string.find('}') if string.find(',') == -1 else string.find(',')
-                value = self.decode(string[index : end_index])
-                obj[key] = value
-                index = end_index
-            if string[index] == '[':
+                while index < len(string):
+                    if string[index] == '}':
+                        break
+                    tpl = self.decode(string[index : ])
+                    if tpl[0] == None:
+                        index += tpl[1]
+                        continue
+                    key = tpl[0]
+                    index += tpl[1]
+                    tpl = self.decode(string[index : ])
+                    if tpl[0] == None:
+                        index += tpl[1]
+                        continue
+                    obj[key] = tpl[0]
+                    index += tpl[1] + 1
+                return obj, index
+
+            if string[index] == '[': 
+                # string = string[index + 1 : string.rfind(']')]
+                index += 1
                 obj = []
-                end_index = string.find(']') if string.find(',') == -1 else string.find(',')
-                value = self.decode(string[index + 1 : end_index])
-                obj.append(value)
-                index = end_index
+                while index < len(string):
+                    if string[index] == ']':
+                        break
+                    tpl = self.decode(string[index : ])
+                    if tpl[0] == None:
+                        index += tpl[1]
+                        continue
+                    obj.append(tpl[0])
+                    index += tpl[1] + 1
+                return obj, index
+        
             if string[index] == '"':
-                end_index = string.find('"')
-                obj = string[index + 1 : end_index]
-                index = end_index
+                obj = string[index + 1 : string.find('"', index + 1)]
+                return obj, index + 2 + len(obj)
+        
             if string[index].isnumeric():
                 end_index = index + 1
                 num_type = int
                 while(True):
-                    if string[end_index] == '.' and string[end_index + 1].isnumeric():
-                        num_type = float
-                    elif string[end_index].isnumeric():
-                        num_type = int
-                    else:
-                        end_index -= 1
-                        break
+                    if not index == len(string) - 1:
+                        if string[end_index] == '.' and string[end_index + 1].isnumeric():
+                            num_type = float
+                    if not string[end_index].isnumeric():
+                            break
                     end_index += 1
                 obj = int(string[index : end_index]) if num_type is int else float(string[index : end_index])
-                index = end_index
-            if string[index : index + 3] == 'true':
-                end_index = index + 3
-                obj = True
-                index = end_index
-            if string[index : index + 4] == 'false':
-                end_index = index + 4
-                obj = False
-                index = end_index
-            if string[index : index + 3] == 'null':
-                end_index = index + 3
-                obj = None
-                index = end_index
-            index += 1
-        return obj
+                return obj, end_index
 
-a = JsonParser()
-di = {"False":None, 'b':[True, "name", 5.5, 4], "a":2}
-# s = a.encode(d)
-with open('testin.json', 'w') as file:
-    a.dump(di, fp=file)
-# print(s)
+            if string[index : index + 4] == 'true':
+                return True, index + 4
+
+            if string[index : index + 5] == 'false':
+                return False, index + 5
+
+            if string[index : index + 4] == 'null':
+                return None, index + 4
+
+            index += 1
+        return None, index
+
+def detoken(string : str):
+    ptr = 0
+    while ptr < len(string):
+        if string[ptr] == ' ' or string[ptr] == '\n':
+            ptr += 1
+            continue
+        if string[ptr] == '{':
+            ptr += 1
+            result = detoken_dict(string[ptr : ])
+            if result[0] is None:
+                ptr += result[1]
+                continue
+            # tokens.append(result[0])
+            ptr += result[1]
+            return result[0], ptr
+        if string[ptr] == '[':
+            ptr += 1
+            result = detoken_list(string[ptr : ])
+            if result[0] is None:
+                ptr += result[1]
+                continue
+            # tokens.append(result[0])
+            ptr += result[1]
+            return result[0], ptr
+        if string[ptr] == '"':
+            ptr += 1
+            result = detoken_str(string[ptr : ])
+            if result[0] is None:
+                ptr += result[1]
+                continue
+            # tokens.append(result[0])
+            ptr += result[1]
+            return result[0], ptr
+        if not ptr == len(string) - 1:
+            if string[ptr] == '-' and string[ptr + 1].isnumeric():
+                ptr += 1
+                result = detoken_nums(string[ptr : ])
+                if result[0] is None:
+                    ptr += result[1]
+                    continue
+                # tokens.append(-1 * result[0])
+                ptr += result[1]
+                return -1 * result[0], ptr
+        if string[ptr].isnumeric():
+            result = detoken_nums(string[ptr : ])
+            if result[0] is None:
+                ptr += result[1]
+                continue
+            # tokens.append(result[0])
+            ptr += result[1]
+            return result[0], ptr
+        if string[ptr : ptr + 5] == 'false':
+            ptr += 5
+            # tokens.append(False)
+            return False, ptr
+        if string[ptr : ptr + 4] == 'true':
+            ptr += 4
+            # tokens.append(True)
+            return True, ptr
+        if string[ptr : ptr + 4] == 'null':
+            ptr += 4
+            # tokens.append(None)
+            return None, ptr
+        ptr += 1
+    return None, ptr
+
+def detoken_dict(string : str):
+    obj = {}
+    ptr = 0
+    while ptr < len(string):
+        char = string[ptr]
+        if string[ptr] == ' ' or string[ptr] == '\n':
+            ptr += 1
+            continue
+        if string[ptr] == '}':
+            ptr += 1
+            break
+        result = detoken(string[ptr : ])
+        if result[0] is None:
+            ptr += result[1]
+            continue
+        key = result[0]
+        ptr += result[1]
+        ptr = string.find(':', ptr)
+        result = detoken(string[ptr : ])
+        if result[0] is None:
+            ptr += result[1]
+            continue
+        obj[key] = result[0]
+        ptr += result[1]
+    return obj, ptr
+
+def detoken_list(string : str):
+    obj = []
+    ptr = 0
+    while ptr < len(string):
+        if string[ptr] == ' ' or string[ptr] == '\n':
+            ptr += 1
+            continue
+        if string[ptr] == ']':
+            ptr += 1
+            break
+        result = detoken(string[ptr : ])
+        if result[0] is None:
+            ptr += result[1]
+            continue
+        obj.append(result[0])
+        ptr += result[1]
+    return obj, ptr
+
+def detoken_str(string : str):
+    obj = ""
+    ptr = 0
+    while ptr < len(string):
+        if string[ptr] == '"':
+            ptr += 1
+            break
+        obj += string[ptr]
+        ptr += 1
+    return obj, ptr
+
+def detoken_nums(string : str):
+    obj = ""
+    ptr = 0
+    num_type = int
+    while ptr < len(string):
+        if not string[ptr].isnumeric():
+            break
+        if not ptr == len(string) - 1:
+            if string[ptr] == '.' and string[ptr + 1].isnumeric():
+                num_type = float
+                continue
+        obj += string[ptr]
+        ptr += 1
+    obj = int(obj) if num_type is int else float(obj)
+    return obj, ptr
+
+j = JsonParser()
+s = object
+# d = {'a' : 2, 'b' : {}}
+# j.loads(j.dumps(d))
+with open('out2.json', 'r') as file:
+    s = json.load(file)
+    print(s, "\n\n\n\n\n\n\n")
+with open('out2.json', 'r') as file:
+    a = file.read()
+    print(detoken(a))
