@@ -8,7 +8,7 @@ setup(
     description='LR2',
     packages=['src', 'src/Factory', 'src/JsonSerializer', 'src/TomlSerializer', 'src/YamlSerializer', 'src/PickleSerializer', 'src/packer'],
     author='no author',
-    install_requires=['PyYaml == 5.3.1', 'wheel == 0.36.2'],
+    install_requires=['PyYaml == 5.3.1'],
     entry_points={
         'console_scripts': [
             'redump = src.redump:main'
