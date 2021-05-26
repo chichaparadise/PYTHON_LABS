@@ -1,0 +1,9 @@
+{% if latest_cars_list %}
+    <ul>
+    {% for car in latest_cars_list %}
+        <li>{{ car.mark }} {{ car.model }} <br> {{ car.year }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cars are provided.</p>
+{% endif %}
