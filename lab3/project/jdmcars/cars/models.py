@@ -1,10 +1,8 @@
 from django.db import models
-from django.db.models.fields import CharField, IntegerField
+from .db_models.caroffer import CarOffer
+from .db_models.offerstatistics import OfferStatistics
+from .db_models.userprofile import UserProfile
 
-class Car(models.Model):
-    mark = CharField(max_length=255)
-    model = CharField(max_length=255)
-    year = IntegerField(default=2000) 
-    
-    def __str__(self):
-        return ' '.join([self.mark, self.model])
+# one to many -> user and his car offers
+# many to many -> user and his fav cars ofers <-> car offer and its following users
+# one to one -> car offer and its statistics
