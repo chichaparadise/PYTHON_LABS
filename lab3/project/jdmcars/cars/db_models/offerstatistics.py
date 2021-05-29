@@ -7,4 +7,7 @@ class OfferStatistics(models.Model):
     todays_views = IntegerField(default=0)
 
     def __str__(self):
-        return str(self.caroffer) + ' ' + str(self.publish_date)
+        if('caroffer' in self.__dict__):
+            return str(self.caroffer) + ' ' + str(self.publish_date)
+        else:
+            return str(self.pk) + str(self.publish_date)
