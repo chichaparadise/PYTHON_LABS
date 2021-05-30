@@ -8,7 +8,7 @@ User = get_user_model()
 class UserProfile(models.Model):
 
     user = ForeignKey(User, on_delete=CASCADE)
-    favorite_offers = ManyToManyField('UserProfile')
+    favorite_offers = ManyToManyField('Offer', blank=True)
 
     def __str__(self):
         if self.user.last_name != ' ':

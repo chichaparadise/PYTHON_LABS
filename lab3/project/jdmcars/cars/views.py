@@ -5,18 +5,23 @@ from django.http import HttpResponse
 from django.views import generic
 from .models import *
 
-class IndexView(generic.ListView):
-    template_name = 'cars/index.html'
-    context_object_name = 'latest_cars_list'
+# def get_last_objects(model:object, order_by:str, count:int):
+#     try:
+#         return model.objects.order_by(order_by)[:count]
+#     except Exception:
+#         return None
 
-    def get_queryset(self):
-        """Return the last five added cars."""
-        return Offer.objects.order_by('-mark')[:5]
+# class IndexView(generic.ListView):
+#     template_name = 'cars/index.html'
+#     context_object_name = 'latest_cars_list'
 
-class CarDetails(generic.DetailView):
-    model = Offer
-    template_name = 'cars/offerdetails.html'
+#     def get_queryset(self):
+#         """Return the last five added cars."""
+#         return get_last_objects(Offer, '-mark', 5)
 
-# one to many -> user and his car offers
-# many to many -> user and his fav cars ofers <-> car offer and its following users
-# one to one -> car offer and its statisto
+# class CarDetails(generic.DetailView):
+#     model = Offer
+#     template_name = 'cars/details.html'
+
+def test_view(request):
+    return render(request, 'cars/base.html')
