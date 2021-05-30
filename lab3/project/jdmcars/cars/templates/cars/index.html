@@ -12,8 +12,8 @@
     <ul>
       {% for car in latest_cars_list %}
       <li>
-        {{ car.mark }} {{ car.model }} <br />
-        {{ car.year }}
+        <a href="{% url 'cars:offerdetails' car.id %}">{{ car.mark }} {{ car.model }}<br />
+        {{ car.year }} </a>
       </li>
       {% endfor %}
     </ul>

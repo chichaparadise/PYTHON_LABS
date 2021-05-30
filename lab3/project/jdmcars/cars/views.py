@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
@@ -10,7 +11,11 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five added cars."""
-        return CarOffer.objects.order_by('-mark')[:5]
+        return Offer.objects.order_by('-mark')[:5]
+
+class CarDetails(generic.DetailView):
+    model = Offer
+    template_name = 'cars/offerdetails.html'
 
 # one to many -> user and his car offers
 # many to many -> user and his fav cars ofers <-> car offer and its following users

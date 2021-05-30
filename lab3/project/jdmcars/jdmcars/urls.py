@@ -19,6 +19,6 @@ from django.urls import path
 from django.urls.conf import include
 
 urlpatterns = [
-    path('', include('cars.urls')),
     path('admin/', admin.site.urls),
+    path('', include('cars.urls')),
 ]
