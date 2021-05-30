@@ -3,7 +3,10 @@ from PIL import Image as Img
 from django.db import models
 from django.db.models.fields.files import ImageField
 from django.db.models.fields.related import ForeignKey
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
+from io import BytesIO
+import sys
 
 class MinResulionErrorException(Exception):
     pass
@@ -26,10 +29,13 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
         image = self.image
         img = Img.open(image)
-        min_height, min_width = self.MIN_RESOLUTION
-        if img.height < min_height or img.width < min_width:
-            raise MinResulionErrorException('Uploaded image resolution lower than minimum')
-        max_height, max_width = self.MAX_RESOLUTION
-        if img.height > max_height or img.width > max_width:
-            raise MaxResulionErrorException('Uploaded image resolution greater than maximum allowed({}x{}), provided {}x{}'.format(*self.MAX_RESOLUTION, img.width, img.height))
+        new_img = img.convert('RGB')
+        resized_new_img = new_img.resize((900, 400), Img.ANTIALIAS)
+        filestream = BytesIO()
+        resized_new_img.save(filestream, 'JPEG', quality=90)
+        filestream.seek(0)
+        name = '{}.{}'.format(*self.image.name.split('.'))
+        self.image = InMemoryUploadedFile(
+            filestream, 'ImageField', name, 'jpeg/image', sys.getsizeof(filestream), None
+        )
         super().save(*args, **kwargs)
