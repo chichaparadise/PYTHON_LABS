@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body>
+{% extends "cars/base.html" %}
+
+{% block content %}
     <h1>Home Page</h1>
-    {% if latest_cars_list %}
+    {% if latest_offers_list %}
     <ul>
-      {% for car in latest_cars_list %}
+      {% for offer in latest_offers_list %}
       <li>
-        <a href="{% url 'cars:offerdetails' car.id %}">{{ car.mark }} {{ car.model }}<br />
-        {{ car.year }} </a>
+        <a href="{% url 'cars:offer-details' offer.pk %}">{{ offer.mark }} {{ offer.model }}</a><br />
+        {{ offer.year }}
       </li>
       {% endfor %}
     </ul>
     {% else %}
-    <p>No cars are provided.</p>
+    <p>No offers are provided.</p>
     {% endif %}
-  </body>
-</html>
+
+{% endblock content %}

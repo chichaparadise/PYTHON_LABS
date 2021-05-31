@@ -1,0 +1,27 @@
+{% extends "cars/base.html" %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'cars:index' %}">JDM Cars</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ offer.mark }}</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ offer.model }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ offer }}</a></li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-4">
+    {% for picture in offer.images_of_offer.all %}
+        <img src="{{ picture.image.url }}" class="img-fluid">
+    {% endfor %}
+    </div>
+    <div class="col-md-8">
+        <h3>{{ offer.mark }} {{ offer.model }}</h3>
+        <p>Year: {{ offer.year }}</p>
+        <p>Price: {{ offer.price }}$</p>
+    </div>
+    <p class="mt-4">Description: {{ offer.description }}</p>
+</div>
+
+{% endblock content %}
