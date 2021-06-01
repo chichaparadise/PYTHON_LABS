@@ -88,7 +88,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a href="{% url 'cars:add-offer' %}">
+          <a href="{% url 'cars:add-offer' %}?next={{request.path}}">
                 <button class="btn btn-primary" id="sidebarToggle">Add Offer</button>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -143,7 +143,7 @@
         <div>{{ offer.price }}$</div>
       </div>
       <div class="item-controls">
-        <a class="btn btn-danger" href="{% url 'cars:delete' offer.pk %}">Delete</a>
+        <a class="btn btn-danger" href="{% url 'cars:delete' offer.pk %}?next={{request.path}}">Delete</a>
       </div>
     </div>
   </li>

@@ -49,10 +49,10 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'cars:profile' %}">{{ request.user }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'cars:self-offers' %}">My Offers</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'cars:favorite-offers' %}">Favorite Offers</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'cars:logout' %}">Log Out</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'cars:logout' %}?">Log Out</a></li>
             {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'cars:signin' %}">Sign In</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'cars:signup' %}">Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'cars:signin' %}?next={{request.path}}">Sign In</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'cars:signup' %}?next={{request.path}}">Sign Up</a></li>
             {% endif %}
           </ul>
         </div>

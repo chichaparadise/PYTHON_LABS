@@ -80,3 +80,9 @@ class AddOfferForm(forms.ModelForm):
         model = Offer
         fields = fields_for_model(model)
         exclude = ['owner', 'statistics']
+
+class EditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = fields_for_model(model)

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate, login
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect, render
 from django.views.generic import View
 from django.http import HttpResponse
 from django.views import generic
@@ -32,59 +32,96 @@ class OfferDetails(generic.DetailView):
     template_name = 'cars/offerdetails.html'
 
 class OffersView(generic.ListView):
-    
-    template_name = 'cars/offers.html'
-    context_object_name = 'offers'
-    queryset = Offer.objects.all()
 
-    def post(self, requset, *args, **kwargs):
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user:
-                login(requset, user)
-                return HttpResponseRedirect('/')
-        context = {'form' : form, 'offers' : get_list_or_404(Offer)}
-        return render(requset, 'cars/signin.html', context)
+    def get(self, request, *args, **kwargs):
+        favorite_offers = None
+        if request.user.is_authenticated:
+            related_user = UserProfile.objects.get(user=request.user)
+            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+        context = {
+            'offers' : Offer.objects.all(),
+            'favorite_offers' : favorite_offers
+        }
+        return render(request, 'cars/offers.html', context)
 
 
-def marksview(request, mark):
-    related_mark = get_object_or_404(Mark, mark=mark)
-    offers_of_mark = get_list_or_404(Offer, mark=related_mark.pk)
-    return render(request, 'cars/mark.html', {'offers' : offers_of_mark, 'mark' : mark })
+class MarksView(generic.ListView):
 
-def modelsview(request, mark, model):
-    related_mark = get_object_or_404(Mark, mark=mark)
-    related_model = get_object_or_404(Model, model=model)
-    offers_of_model = get_list_or_404(Offer, model=related_model.pk, mark=related_mark.pk)
-    return render(request, 'cars/model.html', {'offers' : offers_of_model, 'mark' : mark, 'model' : model})
+    def get(self, request, mark, *args, **kwargs):
+        favorite_offers = None
+        if request.user.is_authenticated:
+            related_user = UserProfile.objects.get(user=request.user)
+            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+        related_mark = get_object_or_404(Mark, mark=mark)
+        offers_of_mark = get_list_or_404(Offer, mark=related_mark.pk)
+        context = {
+            'offers' : offers_of_mark,
+            'favorite_offers' : favorite_offers,
+            'mark' : mark
+        }
+        return render(request, 'cars/mark.html', context)
 
-def favoriteoffersview(request):
-    related_user = get_object_or_404(UserProfile, user=request.user)
-    favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
-    return render(request, 'cars/favoriteoffers.html', {'offers' : favorite_offers})
 
-def selfoffersview(request):
-    related_user = get_object_or_404(UserProfile, user=request.user)
-    user_offers = Offer.objects.filter(owner=related_user)
-    return render(request, 'cars/selfoffers.html', {'offers' : user_offers})
+class ModelsView(generic.ListView):
+
+    def get(self, request, mark, model, *args, **kwargs):
+        favorite_offers = None
+        if request.user.is_authenticated:
+            related_user = UserProfile.objects.get(user=request.user)
+            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+        related_mark = get_object_or_404(Mark, mark=mark)
+        related_model = get_object_or_404(Model, model=model)
+        offers_of_model = get_list_or_404(Offer, model=related_model.pk, mark=related_mark.pk)
+        context = {
+            'offers' : offers_of_model,
+            'favorite_offers' : favorite_offers,
+            'mark' : mark,
+            'model' : model
+        }
+        return render(request, 'cars/model.html', context)
+
+
+class FavoriteOffersView(generic.ListView):
+
+    def get(self, request, *args, **kwargs):
+        related_user = get_object_or_404(UserProfile, user=request.user)
+        favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+        context = {
+            'offers' : favorite_offers,
+        }
+        return render(request, 'cars/favoriteoffers.html', context)
+
+
+class SelfOffersView(generic.ListView):
+
+    def get(self, request, *args, **kwargs):
+        related_user = get_object_or_404(UserProfile, user=request.user)
+        user_offers = Offer.objects.filter(owner=related_user)
+        context = {
+            'offers' : user_offers,
+        }
+        return render(request, 'cars/selfoffers.html', context)
 
 
 class DeleteOfferView(View):
 
     def get(self, request, pk):
+        redirect_to = request.GET.get('next', '')
         offer = Offer.objects.get(pk=pk)
         offer.delete()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(redirect_to)
 
 class AddFavoriteView(View):
 
     def get(self, request, pk):
+        redirect_to = request.GET.get('next', '')
         offer = Offer.objects.get(pk=pk)
         related_user = get_object_or_404(UserProfile, user=request.user)
-        related_user.favorite_offers.add(offer)
-        return HttpResponseRedirect('/')
+        if not offer in related_user.favorite_offers.all():
+            related_user.favorite_offers.add(offer)
+        else:
+            related_user.favorite_offers.remove(offer)
+        return HttpResponseRedirect(redirect_to)
 
 class UserProfileView(View):
     
@@ -98,22 +135,23 @@ class UserProfileView(View):
 
 class SignInView(View):
 
-    def get(self, requset, *args, **kwargs):
-        form = SignInForm(requset.POST or None)
+    def get(self, request, *args, **kwargs):
+        form = SignInForm(request.POST or None)
         context = {'form':form,}
-        return render(requset, 'cars/signin.html', context)
+        return render(request, 'cars/signin.html', context)
 
-    def post(self, requset, *args, **kwargs):
-        form = SignInForm(requset.POST or None)
+    def post(self, request, *args, **kwargs):
+        redirect_to = request.GET.get('next', '')
+        form = SignInForm(request.POST or None)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user:
-                login(requset, user)
-                return HttpResponseRedirect('/')
+                login(request, user)
+                return HttpResponseRedirect(redirect_to)
         context = {'form' : form, 'offers' : get_list_or_404(Offer)}
-        return render(requset, 'cars/signin.html', context)
+        return render(request, 'cars/signin.html', context)
 
 
 class SignUpView(View):
@@ -124,6 +162,7 @@ class SignUpView(View):
         return render(request, 'cars/signup.html', context)
 
     def post(self, request, *args, **kwargs):
+        redirect_to = request.GET.get('next', '')
         form = SignUpForm(request.POST or None)
         if form.is_valid():
             new_user = form.save(commit=False)
@@ -141,7 +180,7 @@ class SignUpView(View):
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(redirect_to)
         context = {'form' : form}
         return render(request, 'cars/signup.html', context)
 
@@ -154,6 +193,7 @@ class AddOfferView(View):
         return render(request, 'cars/addoffer.html', context)
 
     def post(self, request, *args, **kwargs):
+        redirect_to = request.GET.get('next', '')
         form = AddOfferForm(request.POST, request.FILES)
         if form.is_valid():
             new_offer_statistics = Statistics.objects.create(publish_date=datetime.now())
@@ -168,6 +208,6 @@ class AddOfferView(View):
                 statistics=new_offer_statistics,
                 image = form.cleaned_data['image']
             )
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(redirect_to)
         context = {'form' : form}
         return render(request, 'cars/addoffer.html', context)

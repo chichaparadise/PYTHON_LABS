@@ -134,7 +134,7 @@
       </div>
       {% if request.user.is_authenticated %}
       <div class="item-controls">
-        <a href="{% url 'cars:add-favorite' offer.pk %}">
+        <a href="{% url 'cars:add-favorite' offer.pk %}?next={{ request.path }}">
         <button class="bookmark" title="Add to Favorites" type="button">
           <svg
             width="32"
@@ -142,16 +142,18 @@
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            fill="currentcolor"
           >
+          {% if not offer in favorite_offers %}
             <path
               class="stroke"
               d="M15.5 6h-7c-.274 0-.5.226-.5.5v9.757l3.981-2.661L16 16.269V6.5c0-.274-.226-.5-.5-.5zM7 4h10c.549 0 1 .451 1 1v14.068a.503.503 0 0 1-.777.416L11.984 16l-5.206 3.48A.5.5 0 0 1 6 19.064V5c0-.549.451-1 1-1z"
             ></path>
+          {% else %}
             <path
               class="fill"
               d="M7 4h10c.549 0 1 .451 1 1v14.068a.505.505 0 0 1-.777.416L11.984 16l-5.206 3.48A.5.5 0 0 1 6 19.064V5c0-.549.451-1 1-1z"
             ></path>
+          {% endif %}
           </svg>
         </button>
         </a>
