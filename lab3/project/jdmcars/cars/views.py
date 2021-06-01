@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.views import generic
 
-from .forms import SignInForm
+from .forms import SignInForm, SignUpForm
 from .models import *
 
 def get_last_objects(model:object, order_by:str, count:int):
@@ -63,4 +63,35 @@ class SignInView(View):
             if user:
                 login(requset, user)
                 return HttpResponseRedirect('/')
-        return render(requset, 'cars/signin.html', {'form' : form, 'offers' : get_list_or_404(Offer)})
+        context = {'form' : form, 'offers' : get_list_or_404(Offer)}
+        return render(requset, 'cars/signin.html', context)
+
+
+class SignUpView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = SignUpForm(request.POST or None)
+        context = {'form':form, 'offers' : get_list_or_404(Offer)}
+        return render(request, 'cars/signup.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = SignUpForm(request.POST or None)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.username = form.cleaned_data['username']
+            new_user.email = form.cleaned_data['email']
+            new_user.first_name = form.cleaned_data['first_name']
+            new_user.last_name = form.cleaned_data['last_name']
+            new_user.save()
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+            UserProfile.objects.create(
+                user=new_user,
+                # phone=form.cleaned_data['phone'],
+                # address=form.cleaned_data['address']
+            )
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            login(request, user)
+            return HttpResponseRedirect('/')
+        context = {'form' : form}
+        return render(request, 'cars/signup.html', context)

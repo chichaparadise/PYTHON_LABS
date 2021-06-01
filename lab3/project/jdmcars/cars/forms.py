@@ -43,11 +43,11 @@ class SignUpForm(forms.ModelForm):
         self.fields['username'].label = 'Username'
         self.fields['password'].label = 'Password'
         self.fields['confirm_password'].label = 'Confirm Password'
-        self.fields['emil'].label = 'Email'
+        self.fields['email'].label = 'Email'
         self.fields['first_name'].label = 'First Name'
         self.fields['last_name'].label = 'Last Name'
-        self.fields['phone'].label = 'Phone Number'
-        self.fields['address'].label = 'Address'
+        # self.fields['phone'].label = 'Phone Number'
+        # self.fields['address'].label = 'Address'
 
     def clean_email(self):
         email = self.cleaned_data['email']
