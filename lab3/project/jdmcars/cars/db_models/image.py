@@ -24,13 +24,13 @@ class Image(models.Model):
     offer = ForeignKey('Offer', on_delete=models.CASCADE, related_name='images_of_offer')
 
     def __str__(self):
-        return self.image.url
+        return ' '.join([str(self.offer), self.image.url])
 
     def save(self, *args, **kwargs):
         image = self.image
         img = Img.open(image)
         new_img = img.convert('RGB')
-        resized_new_img = new_img.resize((900, 400), Img.ANTIALIAS)
+        resized_new_img = new_img.resize((900, 500), Img.ANTIALIAS)
         filestream = BytesIO()
         resized_new_img.save(filestream, 'JPEG', quality=90)
         filestream.seek(0)

@@ -1,12 +1,29 @@
 {% extends "cars/base.html" %}
 
+{% block styles %}
+<style>
+ul {
+  list-style-type: none;
+}
+</style>
+{% endblock %}
+
 {% block content %}
     <h1>Home Page</h1>
     {% if latest_offers_list %}
     <ul>
       {% for offer in latest_offers_list %}
       <li>
-        <a href="{% url 'cars:offer-details' offer.pk %}">{{ offer.mark }} {{ offer.model }}</a><br />
+        <a href="{% url 'cars:offer-details' offer.mark offer.model offer.pk%}">
+        <img
+        src="{{ offer.images_of_offer.first.image.url }}"
+        class="img-fluid"
+        width="400"
+        height="250"
+        alt="{{ offer }}"
+      />
+      </a>
+        <a href="{% url 'cars:offer-details' offer.mark offer.model offer.pk %}">{{ offer.mark }} {{ offer.model }}</a><br />
         {{ offer.year }}
       </li>
       {% endfor %}
