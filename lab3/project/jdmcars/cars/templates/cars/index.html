@@ -9,7 +9,7 @@ ul {
 {% endblock %}
 
 {% block content %}
-    <h1>Home Page</h1>
+    <h1 class="mt-3 mb-3">Car Offers</h1>
     {% if latest_offers_list %}
     <ul>
       {% for offer in latest_offers_list %}
@@ -29,7 +29,9 @@ ul {
       {% endfor %}
     </ul>
     {% else %}
-    <p>No offers are provided.</p>
+    <div class="col-md-12" style="margin-top: 300px; margin-bottom: 300px;">
+      <h3>No offers provided</h3>
+    </div>
     {% endif %}
 
-{% endblock content %}
+{% endblock content %} 

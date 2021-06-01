@@ -1,7 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import fields
+from django.forms.models import fields_for_model
 from django.forms.widgets import EmailInput
 from django.shortcuts import render
+
+from .models import *
 
 class SignInForm(forms.ModelForm):
 
@@ -49,14 +53,7 @@ class SignUpForm(forms.ModelForm):
         # self.fields['phone'].label = 'Phone Number'
         # self.fields['address'].label = 'Address'
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        domain = email.split('.')[-1]
-        if domain in ('.ru'):
-            raise forms.ValidationError(f'Unable to use "{domain}" domain')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(f'Email {email} already used')
-        return email
+
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -75,3 +72,11 @@ class SignUpForm(forms.ModelForm):
         
         model = User
         fields = ['username', 'password', 'confirm_password', 'first_name', 'last_name', 'address', 'phone', 'email']
+
+
+class AddOfferForm(forms.ModelForm):
+
+    class Meta:   
+        model = Offer
+        fields = fields_for_model(model)
+        exclude = ['owner', 'statistics']

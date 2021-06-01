@@ -8,11 +8,11 @@ from django.forms.models import fields_for_model
 from .models import *
 
 
-class ImageAdminForm(ModelForm):
+# class ImageAdminForm(ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['image'].help_text = 'Uploaded images with resolution greater than {}x{} will be resized'.format(*Image.MIN_RESOLUTION)
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['image'].help_text = 'Uploaded images with resolution greater than {}x{} will be resized'.format(*Image.MIN_RESOLUTION)
 
 # class OfferAdminForm(ModelForm):
     
@@ -29,6 +29,5 @@ class ImageAdminForm(ModelForm):
 admin.site.register(Offer)
 admin.site.register(UserProfile)
 admin.site.register(Statistics)
-admin.site.register(Image)
 admin.site.register(Model)
 admin.site.register(Mark)

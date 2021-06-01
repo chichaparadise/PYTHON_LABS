@@ -12,8 +12,7 @@
 </nav>
 <div class="row">
     <div class="col-md-4">
-    {% for picture in offer.images_of_offer.all %}
-        <img src="{{ picture.image.url }}" class="img-fluid" id="img_id">
+        <img src="{{ offer.image.url }}" class="img-fluid" id="img_id">
         <script>
             $(function ()
 {
@@ -24,7 +23,6 @@
     });
 })(django.jQuery);
         </script>
-    {% endfor %}
     </div>
     <div class="col-md-8">
         <h3>{{ offer.mark }} {{ offer.model }}</h3>
