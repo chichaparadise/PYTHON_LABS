@@ -38,18 +38,17 @@ class SignUpForm(forms.ModelForm):
 
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     password = forms.CharField(widget=forms.PasswordInput)
-    email = forms.CharField(widget=forms.EmailInput, required=False)
-    phone = forms.CharField(required=False)
-    address = forms.CharField(required=False)
+    # email = forms.CharField(widget=forms.EmailInput, required=False)
+    # address = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Username'
         self.fields['password'].label = 'Password'
         self.fields['confirm_password'].label = 'Confirm Password'
-        self.fields['email'].label = 'Email'
-        self.fields['first_name'].label = 'First Name'
-        self.fields['last_name'].label = 'Last Name'
+        # self.fields['email'].label = 'Email'
+        # self.fields['first_name'].label = 'First Name'
+        # self.fields['last_name'].label = 'Last Name'
         # self.fields['phone'].label = 'Phone Number'
         # self.fields['address'].label = 'Address'
 
@@ -71,7 +70,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         
         model = User
-        fields = ['username', 'password', 'confirm_password', 'first_name', 'last_name', 'address', 'phone', 'email']
+        fields = ['username', 'password', 'confirm_password']
 
 
 class AddOfferForm(forms.ModelForm):
@@ -81,8 +80,15 @@ class AddOfferForm(forms.ModelForm):
         fields = fields_for_model(model)
         exclude = ['owner', 'statistics']
 
-class EditUserForm(forms.ModelForm):
+
+class EditProfileForm(forms.ModelForm):
 
     class Meta:
-        model = User
-        fields = fields_for_model(model)
+        model = UserProfile
+        exclude = ['favorite_offers', 'user']
+
+class EditOfferForm(forms.ModelForm):
+
+    class Meta:
+        model = Offer
+        exclude = ['owner', 'statistics']

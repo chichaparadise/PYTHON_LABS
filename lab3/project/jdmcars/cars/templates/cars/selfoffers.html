@@ -124,25 +124,24 @@
           </a>
         </h3>
         <div class="item-info">
-          <div class="item-info-location">location</div>
+          <div class="item-info-location">{{ offer.owner.address }}</div>
           <div class="item-info-date">{{ offer.statistics.publish_date }}</div>
         </div>
       </div>
       <div class="item-params">
         <div>{{ offer.year }}</div>
         <div>
-          механика<!-- -->,
-          <!-- -->2.0&nbsp;л<!-- -->,
-          <!-- -->бензин
+          Today viewed: {{ offer.statistics.todays_views }}
         </div>
         <div>
-          <span>280 000&nbsp;км</span>
+          <span>Total viewed: {{ offer.statistics.total_views }}</span>
         </div>
       </div>
       <div class="item-price">
         <div>{{ offer.price }}$</div>
       </div>
       <div class="item-controls">
+        <a class="btn btn-primary" href="{% url 'cars:edit-offer' offer.pk %}?next={{request.path}}">Edit</a>
         <a class="btn btn-danger" href="{% url 'cars:delete' offer.pk %}?next={{request.path}}">Delete</a>
       </div>
     </div>

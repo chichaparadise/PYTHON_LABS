@@ -8,7 +8,7 @@ from django.views import generic
 
 from datetime import datetime
 
-from .forms import SignInForm, SignUpForm, AddOfferForm
+from .forms import EditProfileForm, SignInForm, SignUpForm, AddOfferForm, EditOfferForm
 from .models import *
 
 def get_last_objects(model:object, order_by:str, count:int):
@@ -24,12 +24,21 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five added cars."""
-        return get_last_objects(Offer, '-mark', 5)
+        return get_last_objects(Offer, '-mark', 8)
 
 class OfferDetails(generic.DetailView):
 
-    model = Offer
-    template_name = 'cars/offerdetails.html'
+    def get(self, request, mark, model, pk, *args, **kwargs):
+        offer = get_object_or_404(Offer, pk=pk)
+        print(offer.statistics.todays_views)
+        offer.statistics.total_views += 1
+        offer.statistics.todays_views += 1
+        print(offer.statistics.todays_views)
+        offer.statistics.save()
+        context = {
+            'offer' : offer
+        }
+        return render(request, 'cars/offerdetails.html', context)
 
 class OffersView(generic.ListView):
 
@@ -167,16 +176,11 @@ class SignUpView(View):
         if form.is_valid():
             new_user = form.save(commit=False)
             new_user.username = form.cleaned_data['username']
-            new_user.email = form.cleaned_data['email']
-            new_user.first_name = form.cleaned_data['first_name']
-            new_user.last_name = form.cleaned_data['last_name']
             new_user.save()
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
             UserProfile.objects.create(
                 user=new_user,
-                # phone=form.cleaned_data['phone'],
-                # address=form.cleaned_data['address']
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
@@ -211,3 +215,47 @@ class AddOfferView(View):
             return HttpResponseRedirect(redirect_to)
         context = {'form' : form}
         return render(request, 'cars/addoffer.html', context)
+
+
+class EditProfileView(View):
+
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(UserProfile, user=request.user)
+        form = EditProfileForm(instance=user)
+        context = {'form':form}
+        return render(request, 'cars/editprofile.html', context)
+
+    def post(self, request, *args, **kwargs):
+        redirect_to = request.GET.get('next', '')
+        user = get_object_or_404(UserProfile, user=request.user)
+        form = EditProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(redirect_to)
+        context = {'form' : form}
+        return render(request, 'cars/editprofile.html', context)
+
+
+class EditOfferView(View):
+
+    def get(self, request, pk, *args, **kwargs):
+        offer = get_object_or_404(Offer, pk=pk)
+        form = EditOfferForm(instance=offer)
+        context = {
+            'form':form,
+            'offer' : offer
+        }
+        return render(request, 'cars/editoffer.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        redirect_to = request.GET.get('next', '')
+        offer = get_object_or_404(Offer, pk=pk)
+        form = EditOfferForm(request.POST, instance=offer)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(redirect_to)
+        context = {
+            'form':form,
+            'offer' : offer
+        }
+        return render(request, 'cars/editoffer.html', context)
