@@ -7,6 +7,8 @@ from django.shortcuts import render
 
 from .models import *
 
+from .logger import logger
+
 class SignInForm(forms.ModelForm):
 
     username = forms.CharField(widget=forms.TextInput)
@@ -18,13 +20,16 @@ class SignInForm(forms.ModelForm):
         self.fields['password'].label = 'Password'
 
     def clean(self):
+        logger.info('Validating users authenticating')
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if not User.objects.filter(username=username).exists():
+            logger.error(f'User {username} not found')
             raise forms.ValidationError(f'User {username} not found')
         user = User.objects.filter(username=username).first()
         if user:
             if not user.check_password(password):
+                logger.error(f'Incorrect password for username "{username}"')
                 raise forms.ValidationError('Incorrect password')
         return self.cleaned_data
 
@@ -38,32 +43,29 @@ class SignUpForm(forms.ModelForm):
 
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     password = forms.CharField(widget=forms.PasswordInput)
-    # email = forms.CharField(widget=forms.EmailInput, required=False)
-    # address = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Username'
         self.fields['password'].label = 'Password'
         self.fields['confirm_password'].label = 'Confirm Password'
-        # self.fields['email'].label = 'Email'
-        # self.fields['first_name'].label = 'First Name'
-        # self.fields['last_name'].label = 'Last Name'
-        # self.fields['phone'].label = 'Phone Number'
-        # self.fields['address'].label = 'Address'
 
 
 
     def clean_username(self):
+        logger.info('Validating username to sign up a User')
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
+            logger.error(f"User with uesrname {username} already exists")
             raise forms.ValidationError(f'User with username "{username}" already exists')
         return username
 
     def clean(self):
+        logger.info('Confirming password to sign up a user')
         password = self.cleaned_data['password']
         confirm_password = self.cleaned_data['confirm_password']
         if password != confirm_password:
+            logger.error('Passwords do not match')
             raise forms.ValidationError('Passwords do not match')
         return self.cleaned_data
 

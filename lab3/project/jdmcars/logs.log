@@ -1,0 +1,33 @@
+Режим DEBUG: 2021-06-02 16:21:36,256  dev  INFO: Get offers of mark Mitsubishi for  
+Режим DEBUG: 2021-06-02 16:21:37,699  dev  INFO: Get details of offer Mitsubishi Eclipse 2000
+Режим DEBUG: 2021-06-02 16:21:39,801  dev  INFO: Get offers of mark Mitsubishi for  
+Режим DEBUG: 2021-06-02 16:21:41,675  dev  INFO: Get favorite offers for  
+Режим DEBUG: 2021-06-02 16:21:43,212  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-02 16:21:44,505  dev  INFO: Get details of offer Nissan Silvia 1999
+Режим DEBUG: 2021-06-02 16:22:02,233  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-02 16:22:45,105  dev  INFO: Get details of offer Nissan Skyline 2000
+Режим DEBUG: 2021-06-02 16:22:59,288  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-02 16:23:00,648  dev  INFO: Signing in
+Режим DEBUG: 2021-06-02 16:23:08,680  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-02 16:23:08,681  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-02 16:23:09,212  dev  INFO: Authorised user user
+Режим DEBUG: 2021-06-02 16:23:09,243  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-02 16:25:57,946  dev  INFO: Get details of offer Nissan Skyline 2000
+Режим DEBUG: 2021-06-02 16:26:10,640  dev  INFO: Get offers of mark Nissan for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:26:17,963  dev  INFO: Get favorite offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:26:26,519  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-02 16:26:55,829  dev  INFO: Get favorite offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:26:56,808  dev  INFO: Get self offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:26:59,225  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:04,730  dev  INFO: User Vlad Krapivnitsky added to favorites offer Nissan Silvia 1999
+Режим DEBUG: 2021-06-02 16:27:04,770  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:05,490  dev  INFO: User Vlad Krapivnitsky added to favorites offer Nissan Skyline 2000
+Режим DEBUG: 2021-06-02 16:27:05,523  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:06,947  dev  INFO: User Vlad Krapivnitsky added to favorites offer Mitsubishi Eclipse 2000
+Режим DEBUG: 2021-06-02 16:27:06,982  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:15,715  dev  INFO: User Vlad Krapivnitsky removed from favorites offer Nissan Skyline 2000
+Режим DEBUG: 2021-06-02 16:27:15,750  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:17,026  dev  INFO: User Vlad Krapivnitsky removed from favorites offer Nissan Silvia 1999
+Режим DEBUG: 2021-06-02 16:27:17,074  dev  INFO: Get offers for Vlad Krapivnitsky
+Режим DEBUG: 2021-06-02 16:27:18,872  dev  INFO: User Vlad Krapivnitsky added to favorites offer Mitsubishi Lancer Evolution 2000
+Режим DEBUG: 2021-06-02 16:27:18,918  dev  INFO: Get offers for Vlad Krapivnitsky
