@@ -1,0 +1,7 @@
+[run]
+omit = */migrations/*
+       jdmcars/asgi.py
+       jdmcars/wsgi.py
+       jdmcars/__init__.py
+       manage.py
+       */__init__.py

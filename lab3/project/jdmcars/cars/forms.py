@@ -14,6 +14,11 @@ class SignInForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
+    class Meta:
+
+        model = User
+        fields = ['username', 'password']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Username'
@@ -31,12 +36,10 @@ class SignInForm(forms.ModelForm):
             if not user.check_password(password):
                 logger.error(f'Incorrect password for username "{username}"')
                 raise forms.ValidationError('Incorrect password')
+            else:
+                logger.info(f"User {str(user)} can be authenticated")
         return self.cleaned_data
 
-    class Meta:
-
-        model = User
-        fields = ['username', 'password']
 
 
 class SignUpForm(forms.ModelForm):

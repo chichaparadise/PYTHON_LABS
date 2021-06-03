@@ -5,6 +5,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect, rende
 from django.views.generic import View
 from django.http import HttpResponse
 from django.views import generic
+from django.contrib.auth.models import User
 
 from datetime import datetime
 
@@ -36,10 +37,8 @@ class OfferDetails(generic.DetailView):
     def get(self, request, mark, model, pk, *args, **kwargs):
         offer = get_object_or_404(Offer, pk=pk)
         logger.info(f'Get details of offer {str(offer)}')
-        print(offer.statistics.todays_views)
         offer.statistics.total_views += 1
         offer.statistics.todays_views += 1
-        print(offer.statistics.todays_views)
         offer.statistics.save()
         context = {
             'offer' : offer
@@ -109,6 +108,7 @@ class FavoriteOffersView(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            print(User.objects.all())
             related_user = UserProfile.objects.get(user=request.user)
             logger.info(f'Get favorite offers for {str(related_user)}')
             favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
