@@ -9,3 +9,4 @@ pytest
 mixer
 pytest-cov
 pytest-xdist
+djangorestframework

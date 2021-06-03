@@ -1022,3 +1022,157 @@
 Режим DEBUG: 2021-06-03 11:39:56,917  dev  INFO: Get offers for  
 Режим DEBUG: 2021-06-03 11:39:57,193  dev  INFO: Get offers of mark Toyota for  
 Режим DEBUG: 2021-06-03 11:39:57,475  dev  INFO: Get offers of model Supra for  
+Режим DEBUG: 2021-06-03 13:51:11,990  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 13:51:13,117  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 13:52:27,751  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 13:54:27,694  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 14:09:30,948  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 14:09:32,473  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 14:09:33,718  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 14:09:33,719  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 14:09:33,941  dev  INFO: User admin can be authenticated
+Режим DEBUG: 2021-06-03 14:09:34,208  dev  INFO: Authorised user admin
+Режим DEBUG: 2021-06-03 14:09:34,232  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:50:26,053  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:50:34,616  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:50:37,549  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 15:50:53,829  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 15:51:03,297  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 15:51:03,299  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 15:51:03,311  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 15:51:03,799  dev  INFO: Signed up user user1
+Режим DEBUG: 2021-06-03 15:51:03,810  dev  INFO: Signed in user user1
+Режим DEBUG: 2021-06-03 15:51:03,844  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:51:09,776  dev  INFO: POST data for user   to edit profile
+Режим DEBUG: 2021-06-03 15:51:09,787  dev  INFO: User   edited profile
+Режим DEBUG: 2021-06-03 15:51:09,840  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:51:13,860  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:51:14,886  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:51:28,514  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:51:28,563  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:51:28,602  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:51:35,126  dev  INFO: Get details of offer Mitsubishi Lancer Evolution 2007
+Режим DEBUG: 2021-06-03 15:51:39,461  dev  INFO: Get details of offer Mitsubishi Lancer Evolution 2007
+Режим DEBUG: 2021-06-03 15:51:40,094  dev  INFO: Get details of offer Mitsubishi Lancer Evolution 2007
+Режим DEBUG: 2021-06-03 15:51:48,445  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:51:50,240  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 15:51:53,507  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:51:56,044  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:51:57,327  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 15:52:01,944  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 15:52:10,187  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 15:52:10,187  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 15:52:10,201  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 15:52:10,694  dev  INFO: Signed up user user2
+Режим DEBUG: 2021-06-03 15:52:10,727  dev  INFO: Signed in user user2
+Режим DEBUG: 2021-06-03 15:52:10,755  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:52:15,024  dev  INFO: POST data for user   to edit profile
+Режим DEBUG: 2021-06-03 15:52:15,027  dev  INFO: User   edited profile
+Режим DEBUG: 2021-06-03 15:52:15,054  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:52:17,122  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:52:17,997  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:52:32,378  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:52:32,410  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:52:32,446  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:52:35,261  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:52:51,144  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:52:51,186  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:52:51,222  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:52:54,377  dev  INFO: Get details of offer Nissan Silvia 2000
+Режим DEBUG: 2021-06-03 15:52:55,887  dev  INFO: Get offers of model Silvia for  
+Режим DEBUG: 2021-06-03 15:52:56,835  dev  INFO: Get offers of mark Nissan for  
+Режим DEBUG: 2021-06-03 15:52:59,250  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:53:00,803  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 15:53:04,943  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 15:53:04,944  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 15:53:05,189  dev  INFO: User user1 can be authenticated
+Режим DEBUG: 2021-06-03 15:53:05,433  dev  INFO: Authorised user user1
+Режим DEBUG: 2021-06-03 15:53:05,446  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:53:09,672  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:53:10,729  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:53:27,276  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:53:27,317  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:53:27,344  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:53:32,293  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:53:33,835  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 15:53:36,951  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 15:53:36,952  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 15:53:36,963  dev  ERROR: User user3 not found
+Режим DEBUG: 2021-06-03 15:53:36,964  dev  WARNING: bad POST data to authorise user
+Режим DEBUG: 2021-06-03 15:53:40,761  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 15:53:50,869  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 15:53:50,870  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 15:53:50,882  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 15:53:51,362  dev  INFO: Signed up user user3
+Режим DEBUG: 2021-06-03 15:53:51,394  dev  INFO: Signed in user user3
+Режим DEBUG: 2021-06-03 15:53:51,423  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:53:55,410  dev  INFO: POST data for user   to edit profile
+Режим DEBUG: 2021-06-03 15:53:55,417  dev  INFO: User   edited profile
+Режим DEBUG: 2021-06-03 15:53:55,466  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 15:53:57,009  dev  INFO: Get favorite offers for  
+Режим DEBUG: 2021-06-03 15:53:59,202  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:53:59,933  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:56:53,604  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:56:53,644  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:56:53,670  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:56:56,827  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:56:58,048  dev  INFO: User   adding an offer
+Режим DEBUG: 2021-06-03 15:57:18,662  dev  INFO: POST data for   to add offer
+Режим DEBUG: 2021-06-03 15:57:18,777  dev  INFO: User   added an offer
+Режим DEBUG: 2021-06-03 15:57:18,807  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 15:57:20,737  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 15:57:22,700  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:57:24,652  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 15:57:26,104  dev  INFO: User   added to favorites offer Nissan Skyline 2000
+Режим DEBUG: 2021-06-03 15:57:26,142  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 15:57:27,754  dev  INFO: User   added to favorites offer Mitsubishi Lancer Evolution 2007
+Режим DEBUG: 2021-06-03 15:57:27,788  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 15:57:29,023  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 15:57:30,454  dev  INFO: Get favorite offers for  
+Режим DEBUG: 2021-06-03 15:59:51,559  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:00:03,019  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:01:43,587  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:01:52,048  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:02:12,064  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:02:12,986  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:02:32,986  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:02:41,114  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:03:43,612  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:04:10,846  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:04:17,341  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:05:16,198  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:05:21,728  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:05:57,169  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:06:16,797  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:06:43,355  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:07:30,119  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:07:31,558  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:08:02,275  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:09:10,468  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:09:22,526  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:09:29,165  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:10,148  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:11,377  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:40,774  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:41,725  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:42,160  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:42,379  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:11:42,595  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:12:27,972  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:12:43,947  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:13:05,696  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:19:03,570  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:19:05,696  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 16:19:17,352  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 16:19:17,353  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 16:19:17,614  dev  INFO: User user1 can be authenticated
+Режим DEBUG: 2021-06-03 16:19:17,856  dev  INFO: Authorised user user1
+Режим DEBUG: 2021-06-03 16:19:17,874  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:19:20,526  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 16:19:35,890  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:23:19,574  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 16:30:13,168  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:07:17,544  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:16:46,343  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:17:35,592  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:19:17,662  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
