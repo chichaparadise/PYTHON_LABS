@@ -1269,3 +1269,16 @@
 Режим DEBUG: 2021-06-03 22:52:57,856  dev  INFO: Get self offers for  
 Режим DEBUG: 2021-06-03 22:52:58,545  dev  INFO: Get favorite offers for  
 Режим DEBUG: 2021-06-03 22:52:59,304  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-04 00:07:40,098  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-04 00:07:40,160  django.security.SuspiciousSession  WARNING: Session data corrupted
+Режим DEBUG: 2021-06-04 00:08:34,286  django.security.SuspiciousSession  WARNING: Session data corrupted
+Режим DEBUG: 2021-06-04 00:08:34,336  django.security.SuspiciousSession  WARNING: Session data corrupted
+Режим DEBUG: 2021-06-04 00:08:37,154  django.security.SuspiciousSession  WARNING: Session data corrupted
+Режим DEBUG: 2021-06-04 13:17:54,498  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-04 13:18:48,433  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-04 13:18:50,644  dev  INFO: Get offers for Anonymous
+Режим DEBUG: 2021-06-04 13:18:54,638  dev  INFO: Signing in
+Режим DEBUG: 2021-06-04 13:18:56,778  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-04 13:18:56,779  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-04 13:18:56,785  dev  ERROR: User admin not found
+Режим DEBUG: 2021-06-04 13:18:56,786  dev  WARNING: bad POST data to authorise user
