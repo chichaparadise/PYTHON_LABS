@@ -10,3 +10,4 @@ mixer
 pytest-cov
 pytest-xdist
 djangorestframework
+gunicorn

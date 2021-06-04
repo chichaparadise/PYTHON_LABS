@@ -8,7 +8,7 @@ from ..models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'id', 'username',]
+        fields = ['url', 'id', 'username', 'email']
 
 class MarkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -57,6 +57,5 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
             'first_name',
             'last_name',
             'address',
-            'email',
             'phone'
         ]

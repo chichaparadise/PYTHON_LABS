@@ -44,12 +44,14 @@ class SignInForm(forms.ModelForm):
 
 class SignUpForm(forms.ModelForm):
 
+    email = forms.EmailField(widget=EmailInput, required=True)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Username'
+        self.fields['email'].label = 'Email'
         self.fields['password'].label = 'Password'
         self.fields['confirm_password'].label = 'Confirm Password'
 
@@ -75,7 +77,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         
         model = User
-        fields = ['username', 'password', 'confirm_password']
+        fields = ['username', 'email', 'password', 'confirm_password']
 
 
 class AddOfferForm(forms.ModelForm):

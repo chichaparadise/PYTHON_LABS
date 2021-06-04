@@ -6,6 +6,7 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.views import generic
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 
 from datetime import datetime
 
@@ -13,6 +14,18 @@ from .forms import EditProfileForm, SignInForm, SignUpForm, AddOfferForm, EditOf
 from .models import *
 
 from .logger import logger
+
+import threading
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email : EmailMessage):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self):
+        logger.info('Async email sending')
+        self.email.send(fail_silently=False)
 
 def get_last_objects(model:object, order_by:str, count:int):
     logger.debug('Test message')
@@ -227,10 +240,19 @@ class SignUpView(View):
             new_user.save()
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
+            user_email = form.cleaned_data['email']
+            new_user.email = user_email
+            new_user.save()
             UserProfile.objects.create(
                 user=new_user,
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            email = EmailMessage(
+                'Greetings',
+                'Thank you for join our JDM lovers community',
+                to=[user_email]
+            )
+            EmailThread(email).start()
             logger.info(f'Signed up user {str(user)}')
             login(request, user)
             logger.info(f'Signed in user {str(user)}')

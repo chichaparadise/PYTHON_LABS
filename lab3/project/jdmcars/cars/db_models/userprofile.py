@@ -13,7 +13,6 @@ class UserProfile(models.Model):
     first_name = CharField(max_length=255, blank=True, default='')
     last_name = CharField(max_length=255, blank=True, default='')
     address = CharField(max_length=255, blank=True, default='')
-    email = EmailField(blank=True, default='')
     phone = CharField(max_length=12, blank=True, default='')
 
     def __str__(self):

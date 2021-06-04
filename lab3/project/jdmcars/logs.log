@@ -1176,3 +1176,96 @@
 Режим DEBUG: 2021-06-03 17:16:46,343  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
 Режим DEBUG: 2021-06-03 17:17:35,592  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
 Режим DEBUG: 2021-06-03 17:19:17,662  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:56:17,258  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 17:56:20,157  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 17:56:21,576  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 17:56:54,742  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 17:56:54,742  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 17:56:54,757  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 17:57:55,426  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 17:57:55,427  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 17:57:55,439  dev  ERROR: User with uesrname us4 already exists
+Режим DEBUG: 2021-06-03 17:57:55,443  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 17:57:55,445  dev  WARNING: bad POST data to sign up user
+Режим DEBUG: 2021-06-03 17:58:09,281  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 17:58:10,498  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 17:58:10,500  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 17:58:10,753  dev  INFO: User admin can be authenticated
+Режим DEBUG: 2021-06-03 17:58:10,985  dev  INFO: Authorised user admin
+Режим DEBUG: 2021-06-03 17:58:11,000  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 18:00:05,581  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:00:07,149  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 18:00:09,561  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 18:00:21,829  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 18:00:21,830  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 18:00:21,843  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 18:00:22,361  dev  INFO: Signed up user us4
+Режим DEBUG: 2021-06-03 18:00:22,369  dev  INFO: Signed in user us4
+Режим DEBUG: 2021-06-03 18:00:22,402  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 18:00:27,314  dev  INFO: POST data for user   to edit profile
+Режим DEBUG: 2021-06-03 18:00:27,321  dev  INFO: User   edited profile
+Режим DEBUG: 2021-06-03 18:00:27,356  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 18:00:34,964  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:00:36,481  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 18:00:37,864  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 18:00:37,865  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 18:00:38,115  dev  INFO: User admin can be authenticated
+Режим DEBUG: 2021-06-03 18:00:38,649  dev  INFO: Authorised user admin
+Режим DEBUG: 2021-06-03 18:00:38,670  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:15:19,084  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:15:24,771  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:15:31,860  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 18:15:33,623  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 18:16:06,312  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 18:16:06,313  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 18:16:06,332  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 18:16:06,833  dev  INFO: Async email sending
+Режим DEBUG: 2021-06-03 18:16:06,833  dev  INFO: Signed up user deleted
+Режим DEBUG: 2021-06-03 18:16:06,865  dev  INFO: Signed in user deleted
+Режим DEBUG: 2021-06-03 18:16:06,904  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 18:21:43,824  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:22:13,286  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:22:15,183  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 18:22:16,192  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 18:22:19,395  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 18:22:38,750  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 18:22:38,750  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 18:22:38,761  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 18:22:39,277  dev  INFO: Async email sending
+Режим DEBUG: 2021-06-03 18:22:39,277  dev  INFO: Signed up user deleted
+Режим DEBUG: 2021-06-03 18:22:39,295  dev  INFO: Signed in user deleted
+Режим DEBUG: 2021-06-03 18:22:39,325  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 22:42:11,003  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 22:46:35,770  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 22:51:49,312  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 22:51:51,419  dev  INFO: Get offers for Anonymous
+Режим DEBUG: 2021-06-03 22:51:52,723  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 22:51:56,895  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 22:51:58,574  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 22:51:58,574  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 22:51:58,581  dev  ERROR: User admin not found
+Режим DEBUG: 2021-06-03 22:51:58,583  dev  WARNING: bad POST data to authorise user
+Режим DEBUG: 2021-06-03 22:52:05,958  dev  INFO: Get offers for Anonymous
+Режим DEBUG: 2021-06-03 22:52:07,724  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 22:52:08,857  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 22:52:08,858  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 22:52:08,867  dev  ERROR: User admin not found
+Режим DEBUG: 2021-06-03 22:52:08,868  dev  WARNING: bad POST data to authorise user
+Режим DEBUG: 2021-06-03 22:52:18,529  dev  INFO: Get objects of <class 'cars.db_models.offer.Offer'>
+Режим DEBUG: 2021-06-03 22:52:19,714  dev  INFO: Signing in
+Режим DEBUG: 2021-06-03 22:52:20,848  dev  INFO: POST data to authorise user
+Режим DEBUG: 2021-06-03 22:52:20,848  dev  INFO: Validating users authenticating
+Режим DEBUG: 2021-06-03 22:52:20,855  dev  ERROR: User admin not found
+Режим DEBUG: 2021-06-03 22:52:20,856  dev  WARNING: bad POST data to authorise user
+Режим DEBUG: 2021-06-03 22:52:30,744  dev  INFO: Signing up
+Режим DEBUG: 2021-06-03 22:52:53,965  dev  INFO: POST data to sign up user
+Режим DEBUG: 2021-06-03 22:52:53,966  dev  INFO: Validating username to sign up a User
+Режим DEBUG: 2021-06-03 22:52:53,982  dev  INFO: Confirming password to sign up a user
+Режим DEBUG: 2021-06-03 22:52:54,503  dev  INFO: Async email sending
+Режим DEBUG: 2021-06-03 22:52:54,503  dev  INFO: Signed up user us
+Режим DEBUG: 2021-06-03 22:52:54,524  dev  INFO: Signed in user us
+Режим DEBUG: 2021-06-03 22:52:54,545  dev  INFO: User   editing profile
+Режим DEBUG: 2021-06-03 22:52:56,318  dev  INFO: Get offers for  
+Режим DEBUG: 2021-06-03 22:52:57,856  dev  INFO: Get self offers for  
+Режим DEBUG: 2021-06-03 22:52:58,545  dev  INFO: Get favorite offers for  
+Режим DEBUG: 2021-06-03 22:52:59,304  dev  INFO: Get self offers for  
