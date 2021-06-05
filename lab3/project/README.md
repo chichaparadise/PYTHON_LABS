@@ -3,3 +3,4 @@ API - django-rest-framework
 pytest - coverage 83%
 multithreading - sending email in separate thread
 docker-compose - dev and production modes
+https://hub.docker.com/repository/docker/chichaparadise/django-project - docker repo
