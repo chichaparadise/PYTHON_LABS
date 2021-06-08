@@ -63,9 +63,10 @@ class OffersView(generic.ListView):
     def get(self, request, *args, **kwargs):
         favorite_offers = None
         if request.user.is_authenticated:
-            related_user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get offers for {str(related_user)}')
-            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+            if not request.user.is_superuser:
+                related_user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get offers for {str(related_user)}')
+                favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
         else:
             logger.info(f'Get offers for Anonymous')
         context = {
@@ -80,9 +81,10 @@ class MarksView(generic.ListView):
     def get(self, request, mark, *args, **kwargs):
         favorite_offers = None
         if request.user.is_authenticated:
-            related_user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get offers of mark {str(mark)} for {str(related_user)}')
-            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+            if not request.user.is_superuser:
+                related_user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get offers of mark {str(mark)} for {str(related_user)}')
+                favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
         else:
             logger.info(f'Get offers of {str(mark)} for Anonymous')
         related_mark = get_object_or_404(Mark, mark=mark)
@@ -100,9 +102,10 @@ class ModelsView(generic.ListView):
     def get(self, request, mark, model, *args, **kwargs):
         favorite_offers = None
         if request.user.is_authenticated:
-            related_user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get offers of model {str(model)} for {str(related_user)}')
-            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+            if not request.user.is_superuser:
+                related_user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get offers of model {str(model)} for {str(related_user)}')
+                favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
         else:
             logger.info(f'Get offers of model {str(model)} for Anonymous')
         related_mark = get_object_or_404(Mark, mark=mark)
@@ -121,14 +124,16 @@ class FavoriteOffersView(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            print(User.objects.all())
-            related_user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get favorite offers for {str(related_user)}')
-            favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
-            context = {
-                'offers' : favorite_offers,
-            }
-            return render(request, 'cars/favoriteoffers.html', context)
+            if not request.user.is_superuser:
+                related_user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get favorite offers for {str(related_user)}')
+                favorite_offers = related_user.favorite_offers.filter(userprofile=related_user)
+                context = {
+                    'offers' : favorite_offers,
+                }
+                return render(request, 'cars/favoriteoffers.html', context)
+            else:
+                return render(request, 'cars/favoriteoffers.html')
         else:
             logger.warning('User not authorised to visit favorite objects')
             return HttpResponseRedirect('signin/')
@@ -138,13 +143,16 @@ class SelfOffersView(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            related_user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get self offers for {str(related_user)}')
-            user_offers = Offer.objects.filter(owner=related_user)
-            context = {
-                'offers' : user_offers,
-            }
-            return render(request, 'cars/selfoffers.html', context)
+            if not request.user.is_superuser:
+                related_user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get self offers for {str(related_user)}')
+                user_offers = Offer.objects.filter(owner=related_user)
+                context = {
+                    'offers' : user_offers,
+                }
+                return render(request, 'cars/selfoffers.html', context)
+            else:
+                return render(request, 'cars/selfoffers.html')
         else:
             logger.warning('User not authorised to visit self offers')
             return HttpResponseRedirect('signin/')
@@ -155,9 +163,10 @@ class DeleteOfferView(View):
     def get(self, request, pk):
         if request.user.is_authenticated:
             redirect_to = request.GET.get('next', '')
-            offer = Offer.objects.get(pk=pk)
-            logger.info(f'User {str(request.user)} deleted offer {str(offer)}')
-            offer.delete()
+            if not request.user.is_superuser:
+                offer = Offer.objects.get(pk=pk)
+                logger.info(f'User {str(request.user)} deleted offer {str(offer)}')
+                offer.delete()
             return HttpResponseRedirect(redirect_to)
         else:
             logger.warning('User not authorised to delete offer')
@@ -168,14 +177,15 @@ class AddFavoriteView(View):
     def get(self, request, pk):
         if request.user.is_authenticated:
             redirect_to = request.GET.get('next', '')
-            offer = Offer.objects.get(pk=pk)
-            related_user = get_object_or_404(UserProfile, user=request.user)
-            if not offer in related_user.favorite_offers.all():
-                logger.info(f'User {str(related_user)} added to favorites offer {str(offer)}')
-                related_user.favorite_offers.add(offer)
-            else:
-                logger.info(f'User {str(related_user)} removed from favorites offer {str(offer)}')
-                related_user.favorite_offers.remove(offer)
+            if not request.user.is_superuser:
+                offer = Offer.objects.get(pk=pk)
+                related_user = get_object_or_404(UserProfile, user=request.user)
+                if not offer in related_user.favorite_offers.all():
+                    logger.info(f'User {str(related_user)} added to favorites offer {str(offer)}')
+                    related_user.favorite_offers.add(offer)
+                else:
+                    logger.info(f'User {str(related_user)} removed from favorites offer {str(offer)}')
+                    related_user.favorite_offers.remove(offer)
             return HttpResponseRedirect(redirect_to)
         else:
             logger.warning('User not authorised to add offer to favorites')
@@ -186,12 +196,15 @@ class UserProfileView(View):
     
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            user = UserProfile.objects.get(user=request.user)
-            logger.info(f'Get info of user {str(request.user)}')
-            context = {
-                'user' : user,
-            }
-            return render(request, 'cars/profile.html', context)
+            if not request.user.is_superuser:
+                user = UserProfile.objects.get(user=request.user)
+                logger.info(f'Get info of user {str(request.user)}')
+                context = {
+                    'user' : user,
+                }
+                return render(request, 'cars/profile.html', context)
+            else:
+                return render(request, 'cars/profile.html') 
         else:
             logger.warning('User not authorised to get info of user')
             return HttpResponseRedirect('signin/')
@@ -265,13 +278,17 @@ class SignUpView(View):
 class AddOfferView(View):
 
     def get(self, request, *args, **kwargs):
-        related_user = get_object_or_404(UserProfile, user=request.user)
-        logger.info(f'User {str(related_user)} adding an offer')
-        form = AddOfferForm(request.POST or None)
-        context = {'form':form}
-        return render(request, 'cars/addoffer.html', context)
+        if not request.user.is_superuser:
+            related_user = get_object_or_404(UserProfile, user=request.user)
+            logger.info(f'User {str(related_user)} adding an offer')
+            form = AddOfferForm(request.POST or None)
+            context = {'form':form}
+            return render(request, 'cars/addoffer.html', context)
+        return render(request, 'cars/offers.html')
 
     def post(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return render(request, 'cars/offers.html')
         related_user = get_object_or_404(UserProfile, user=request.user)
         logger.info(f'POST data for {str(related_user)} to add offer')
         redirect_to = request.GET.get('next', '')
@@ -298,6 +315,8 @@ class AddOfferView(View):
 class EditProfileView(View):
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return render(request, 'cars/offers.html')
         user = get_object_or_404(UserProfile, user=request.user)
         logger.info(f'User {str(user)} editing profile')
         form = EditProfileForm(instance=user)
@@ -305,6 +324,8 @@ class EditProfileView(View):
         return render(request, 'cars/editprofile.html', context)
 
     def post(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return render(request, 'cars/offers.html')
         redirect_to = request.GET.get('next', '')
         user = get_object_or_404(UserProfile, user=request.user)
         logger.info(f'POST data for user {str(user)} to edit profile')
@@ -321,6 +342,8 @@ class EditProfileView(View):
 class EditOfferView(View):
 
     def get(self, request, pk, *args, **kwargs):
+        if request.user.is_superuser:
+            return render(request, 'cars/offers.html')
         user = get_object_or_404(UserProfile, user=request.user)
         offer = get_object_or_404(Offer, pk=pk)
         logger.info(f'User {str(user)} editing offer {str(offer)}')
@@ -332,6 +355,8 @@ class EditOfferView(View):
         return render(request, 'cars/editoffer.html', context)
 
     def post(self, request, pk, *args, **kwargs):
+        if request.user.is_superuser:
+            return render(request, 'cars/offers.html')
         redirect_to = request.GET.get('next', '')
         user = get_object_or_404(UserProfile, user=request.user)
         offer = get_object_or_404(Offer, pk=pk)

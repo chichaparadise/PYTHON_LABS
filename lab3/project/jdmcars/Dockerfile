@@ -20,5 +20,5 @@ COPY ./entrypoint.sh .
 
 COPY . .
 
-# RUN chmod +x /usr/src/jdmcars/entrypoint.sh
-# ENTRYPOINT ["/usr/src/jdmcars/entrypoint.sh"]
+RUN chmod +x /usr/src/jdmcars/entrypoint.sh
+ENTRYPOINT ["/bin/sh", "/usr/src/jdmcars/entrypoint.sh"]

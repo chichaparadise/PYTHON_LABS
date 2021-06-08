@@ -40,4 +40,5 @@ RUN chown -R project:project $APP_HOME
 
 USER project
 
-# ENTRYPOINT [ "/home/project/web/entrypoint.prod.sh" ]
+RUN chmod +x /home/project/web/entrypoint.prod.sh
+ENTRYPOINT [ "/bin/sh", "/home/project/web/entrypoint.prod.sh" ]
