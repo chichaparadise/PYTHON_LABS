@@ -1,6 +1,23 @@
-United labs 3&4
-API - django-rest-framework
-pytest - coverage 83%
-multithreading - sending email in separate thread
-docker-compose - dev and production modes
-https://hub.docker.com/repository/docker/chichaparadise/django-project - docker repo
+# 4 lab
+-
+Docker images: 
+  https://hub.docker.com/repository/docker/chichaparadise/django-project
+
+
+## For fast project launch you need:
+- docker-compose.prod.yml
+### env files:
+- .env.prod
+- .env.prod.db
+### Then
+- run in terminal:  docker-compose -f docker-compose.prod.yml up 
+- go to localhost:1337
+
+### multithreding 
+  sending email in separate thread
+  
+### coverage
+  83%
+
+### api
+  rest API
