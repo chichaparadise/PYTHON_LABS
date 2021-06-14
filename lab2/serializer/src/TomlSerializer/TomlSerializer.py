@@ -1,5 +1,5 @@
 from src.packer import packer, unpacker
-import toml
+from src.TomlSerializer import TomlParser as toml
 
 
 class TomlSerializer:
