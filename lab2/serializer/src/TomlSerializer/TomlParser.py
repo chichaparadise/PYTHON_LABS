@@ -69,8 +69,7 @@ def dumps(obj):
 
 
 def dump(obj, file):
-    with open(file, 'w') as file:
-        file.write(dumps(obj))
+    file.write(dumps(obj))
 
 
 def loads(temp_str):
